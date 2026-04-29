@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ar">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ORO Cafe</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Topbar بسيط: اسم المكان واللوجو -->
+  <header class="topbar">
+    <div class="container header-inner">
+      <div class="site-title">ORO Cafe</div>
+      <div class="brand-left">
+        <a href="index.html" aria-label="الرئيسية">
+          <img src="assets/oro-logo.png" alt="ORO logo" class="header-logo" onerror="this.style.display='none'">
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="hero" role="main">
+    <div class="overlay"></div>
+
+    <div class="container hero-content">
+      <div class="logo-circle" aria-hidden="false">
+        <img src="assets/oro-logo.png" alt="ORO logo" class="hero-logo">
+      </div>
+
+      <div class="taglines">
+        <p class="line">اللمه الحلوة 🔥</p>
+        <p class="line">هنستناك تنورنا تانى 😎</p>
+      </div>
+
+      <div class="socials" role="navigation" aria-label="روابط التواصل">
+        <a href="https://wa.me/20" target="_blank" rel="noopener noreferrer" aria-label="واتساب"><i class="fab fa-whatsapp"></i></a>
+        <a href="tel:+20" aria-label="اتصال"><i class="fas fa-phone"></i></a>
+        <a href="https://www.instagram.com/oro_cafee01/" target="_blank" rel="noopener noreferrer" aria-label="انستجرام"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.facebook.com/profile.php?id=61582903045244" target="_blank" rel="noopener noreferrer" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.tiktok.com/@oro_cafee1" target="_blank" rel="noopener noreferrer" aria-label="تيك توك"><i class="fab fa-tiktok"></i></a>
+      </div>
+
+      <nav class="hero-buttons" aria-label="الأزرار الرئيسية">
+        <!-- هنا الروابط تفتح صفحات منفصلة -->
+        <a class="btn btn-outline" href="location.html">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>LOCATION</span>
+        </a>
+
+        <a class="btn btn-outline" href="menu.html">
+          <i class="fas fa-utensils"></i>
+          <span>MENU</span>
+        </a>
+      </nav>
+
+      <div class="open-hours">8AM To 1AM</div>
+    </div>
+  </main>
+
+  <!-- Sections تبقى موجودة أو ممكن تتركها فارغة لأن المستخدم يروح لصفحات منفصلة -->
+  <section id="location" class="section section-location" style="display:none"></section>
+  <section id="menu" class="section section-menu" style="display:none"></section>
+
+  <footer class="site-footer" style="display:none">
+    <div class="container">
+      <p>© <span id="year"></span> ORO Cafe — كل الحقوق محفوظة</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById && document.getElementById('year') && (document.getElementById('year').textContent = new Date().getFullYear());
+  </script>
+</body>
+</html>
