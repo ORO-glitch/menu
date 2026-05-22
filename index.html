@@ -18,17 +18,46 @@
       --error-red: #ff4757;
     }
 
-    body {
-      margin: 0;
-      padding: 0;
-      background: var(--bg-dark);
+    .main-hero {
+      height: calc(100vh - 64px);
+      min-height: 640px;
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
+      overflow: hidden;
+      background-color: #060606;
+      z-index: 0;
+      background-image: url('assets/hero-bg.jpg');
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+    }
+
+    .main-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: inherit;
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      filter: saturate(0.85) blur(0.6px) contrast(0.95);
+      opacity: 0.95;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .main-hero .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.68), rgba(0,0,0,0.88));
+      z-index: 1;
     }
 
     .error-container {
+      position: relative;
+      z-index: 2;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -90,23 +119,40 @@
   </style>
 </head>
 <body>
-  <div class="error-container">
-    <div class="error-content">
-      <div class="error-icon">
-        <i class="fas fa-times-circle"></i>
-      </div>
-
-      <h1>لم يتم الدفع</h1>
-      
-      <div class="message">
-        <p>عذراً، لم تكتمل عملية الدفع بنجاح.</p>
-        <p>يرجى التحقق من بيانات بطاقتك والمحاولة مرة أخرى.</p>
-      </div>
-
-      <div class="footer-note">
-        <p>© 2026 ORO Cafe - جميع الحقوق محفوظة</p>
+  <!-- Topbar -->
+  <header class="topbar">
+    <div class="container header-inner">
+      <div class="site-title">ORO Cafe</div>
+      <div class="brand-left">
+        <a href="index.html" aria-label="الرئيسية">
+          <img src="assets/oro-logo.png" alt="ORO logo" class="header-logo" onerror="this.style.display='none'">
+        </a>
       </div>
     </div>
-  </div>
+  </header>
+
+  <!-- Hero Background with Error Message -->
+  <main class="main-hero" role="main">
+    <div class="overlay"></div>
+
+    <div class="error-container">
+      <div class="error-content">
+        <div class="error-icon">
+          <i class="fas fa-times-circle"></i>
+        </div>
+
+        <h1>لم يتم الدفع</h1>
+        
+        <div class="message">
+          <p>عذراً، لم تكتمل عملية الدفع بنجاح.</p>
+          <p>يرجى التحقق من بيانات بطاقتك والمحاولة مرة أخرى.</p>
+        </div>
+
+        <div class="footer-note">
+          <p>© 2026 ORO Cafe - جميع الحقوق محفوظة</p>
+        </div>
+      </div>
+    </div>
+  </main>
 </body>
 </html>
