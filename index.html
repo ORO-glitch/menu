@@ -9,13 +9,31 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="styles.css" />
   <style>
-    .error-container {
+    :root {
+      --gold: #c69a2f;
+      --gold-strong: #ffd24d;
+      --gold-dark: #8c6a1a;
+      --muted: #e9e6e0;
+      --bg-dark: #050405;
+      --error-red: #ff4757;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       min-height: 100vh;
+    }
+
+    .error-container {
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 40px 20px;
-      background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(5,4,5,0.95));
+      width: 100%;
     }
 
     .error-content {
@@ -30,7 +48,7 @@
 
     .error-icon {
       font-size: 80px;
-      color: #ff4757;
+      color: var(--error-red);
       margin-bottom: 20px;
       animation: shake 0.5s ease-in-out;
     }
@@ -42,99 +60,17 @@
     }
 
     .error-content h1 {
-      color: #ff4757;
+      color: var(--error-red);
       font-size: 36px;
       margin: 0 0 15px 0;
       font-weight: 800;
-    }
-
-    .error-content .subtitle {
-      color: var(--gold-strong);
-      font-size: 24px;
-      margin: 0 0 30px 0;
-      font-weight: 700;
     }
 
     .error-content .message {
       color: var(--muted);
       font-size: 16px;
       line-height: 1.8;
-      margin: 0 0 30px 0;
-    }
-
-    .language-toggle {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      margin-bottom: 30px;
-    }
-
-    .lang-btn {
-      padding: 8px 16px;
-      border: 2px solid var(--gold);
-      background: transparent;
-      color: var(--gold);
-      border-radius: 20px;
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      font-family: 'Cairo', system-ui;
-    }
-
-    .lang-btn.active {
-      background: var(--gold);
-      color: #0b0b0b;
-    }
-
-    .lang-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(198,154,47,0.2);
-    }
-
-    .content-ar { display: block; }
-    .content-en { display: none; }
-
-    .action-buttons {
-      display: flex;
-      gap: 15px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 30px;
-    }
-
-    .btn-action {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      text-decoration: none;
-      color: var(--gold);
-      padding: 12px 24px;
-      border-radius: 30px;
-      border: 2px solid var(--gold);
-      background: transparent;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      cursor: pointer;
-      font-family: 'Cairo', system-ui;
-      font-size: 14px;
-    }
-
-    .btn-action:hover {
-      background: linear-gradient(180deg, rgba(255,210,0,0.06), rgba(255,210,0,0.02));
-      transform: translateY(-3px);
-      box-shadow: 0 12px 30px rgba(198,154,47,0.2);
-    }
-
-    .btn-action.primary {
-      background: var(--gold);
-      color: #0b0b0b;
-    }
-
-    .btn-action.primary:hover {
-      background: var(--gold-strong);
-      box-shadow: 0 12px 30px rgba(255,210,0,0.3);
+      margin: 0;
     }
 
     .footer-note {
@@ -149,10 +85,7 @@
         padding: 30px 20px;
       }
       .error-content h1 { font-size: 28px; }
-      .error-content .subtitle { font-size: 18px; }
       .error-icon { font-size: 60px; }
-      .action-buttons { flex-direction: column; }
-      .btn-action { width: 100%; }
     }
   </style>
 </head>
@@ -163,81 +96,17 @@
         <i class="fas fa-times-circle"></i>
       </div>
 
-      <div class="language-toggle">
-        <button class="lang-btn active" onclick="switchLanguage('ar')">العربية</button>
-        <button class="lang-btn" onclick="switchLanguage('en')">English</button>
-      </div>
-
-      <!-- Arabic Content -->
-      <div class="content-ar active">
-        <h1>لم يتم الدفع</h1>
-        <p class="subtitle">Payment Not Completed</p>
-        <div class="message">
-          <p>عذراً، لم تكتمل عملية الدفع بنجاح.</p>
-          <p>يرجى التحقق من بيانات بطاقتك والمحاولة مرة أخرى.</p>
-          <p>إذا استمرت المشكلة، يرجى التواصل معنا على الفور.</p>
-        </div>
-      </div>
-
-      <!-- English Content -->
-      <div class="content-en">
-        <h1>Payment Not Completed</h1>
-        <p class="subtitle">لم يتم الدفع</p>
-        <div class="message">
-          <p>Sorry, the payment process was not completed successfully.</p>
-          <p>Please verify your card details and try again.</p>
-          <p>If the problem persists, please contact us immediately.</p>
-        </div>
-      </div>
-
-      <div class="action-buttons">
-        <a href="https://wa.me/20" target="_blank" rel="noopener noreferrer" class="btn-action primary">
-          <i class="fas fa-phone"></i>
-          <span class="btn-text-ar">تواصل معنا</span>
-          <span class="btn-text-en" style="display:none;">Contact Us</span>
-        </a>
+      <h1>لم يتم الدفع</h1>
+      
+      <div class="message">
+        <p>عذراً، لم تكتمل عملية الدفع بنجاح.</p>
+        <p>يرجى التحقق من بيانات بطاقتك والمحاولة مرة أخرى.</p>
       </div>
 
       <div class="footer-note">
-        <p class="ar-text">© 2026 ORO Cafe - جميع الحقوق محفوظة</p>
-        <p class="en-text" style="display:none;">© 2026 ORO Cafe - All Rights Reserved</p>
+        <p>© 2026 ORO Cafe - جميع الحقوق محفوظة</p>
       </div>
     </div>
   </div>
-
-  <script>
-    function switchLanguage(lang) {
-      const arContent = document.querySelector('.content-ar');
-      const enContent = document.querySelector('.content-en');
-      const arText = document.querySelectorAll('.ar-text');
-      const enText = document.querySelectorAll('.en-text');
-      const btnTextAr = document.querySelectorAll('.btn-text-ar');
-      const btnTextEn = document.querySelectorAll('.btn-text-en');
-
-      const langBtns = document.querySelectorAll('.lang-btn');
-      langBtns.forEach(btn => btn.classList.remove('active'));
-      event.target.classList.add('active');
-
-      if (lang === 'ar') {
-        arContent.classList.add('active');
-        enContent.classList.remove('active');
-        arText.forEach(el => el.style.display = 'block');
-        enText.forEach(el => el.style.display = 'none');
-        btnTextAr.forEach(el => el.style.display = 'inline');
-        btnTextEn.forEach(el => el.style.display = 'none');
-        document.documentElement.lang = 'ar';
-        document.body.style.direction = 'rtl';
-      } else {
-        arContent.classList.remove('active');
-        enContent.classList.add('active');
-        arText.forEach(el => el.style.display = 'none');
-        enText.forEach(el => el.style.display = 'block');
-        btnTextAr.forEach(el => el.style.display = 'none');
-        btnTextEn.forEach(el => el.style.display = 'inline');
-        document.documentElement.lang = 'en';
-        document.body.style.direction = 'ltr';
-      }
-    }
-  </script>
 </body>
 </html>
