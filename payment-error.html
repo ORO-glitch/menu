@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="ar">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>لم يتم الدفع - ORO Cafe</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    :root {
+      --gold: #c69a2f;
+      --gold-strong: #ffd24d;
+      --gold-dark: #8c6a1a;
+      --muted: #e9e6e0;
+      --bg-dark: #050405;
+      --error-red: #ff4757;
+      --topbar-height: 64px;
+      --glass: rgba(255,255,255,0.03);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Cairo', system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      color: var(--muted);
+      background: var(--bg-dark);
+      direction: rtl;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .topbar {
+      background: linear-gradient(90deg, var(--gold-strong), var(--gold));
+      height: var(--topbar-height);
+      display: flex;
+      align-items: center;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.18);
+      z-index: 6;
+      position: relative;
+    }
+
+    .header-inner {
+      display: block;
+      position: relative;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      height: 100%;
+    }
+
+    .site-title {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-weight: 900;
+      color: #0b0b0b;
+      font-size: 20px;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+
+    .brand-left {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .header-logo {
+      height: 44px;
+      width: auto;
+      object-fit: contain;
+      border-radius: 6px;
+      background: var(--glass);
+      padding: 4px;
+    }
+
+    .container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .error-content {
+      text-align: center;
+      max-width: 600px;
+      background: linear-gradient(135deg, rgba(255,71,87,0.1), rgba(198,154,47,0.05));
+      border: 2px solid rgba(255,71,87,0.2);
+      border-radius: 16px;
+      padding: 50px 30px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+
+    .error-icon {
+      font-size: 80px;
+      color: var(--error-red);
+      margin-bottom: 20px;
+      animation: shake 0.5s ease-in-out;
+    }
+
+    @keyframes shake {
+      0%, 100% {
+        transform: translateX(0);
+      }
+      25% {
+        transform: translateX(-10px);
+      }
+      75% {
+        transform: translateX(10px);
+      }
+    }
+
+    h1 {
+      color: var(--error-red);
+      font-size: 36px;
+      margin: 0 0 15px 0;
+      font-weight: 800;
+    }
+
+    .subtitle {
+      color: var(--gold-strong);
+      font-size: 24px;
+      margin: 0 0 30px 0;
+      font-weight: 700;
+    }
+
+    .message {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.8;
+      margin: 0 0 30px 0;
+    }
+
+    .language-toggle {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .lang-btn {
+      padding: 8px 16px;
+      border: 2px solid var(--gold);
+      background: transparent;
+      color: var(--gold);
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      font-family: 'Cairo', system-ui;
+    }
+
+    .lang-btn.active {
+      background: var(--gold);
+      color: #0b0b0b;
+    }
+
+    .lang-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(198,154,47,0.2);
+    }
+
+    .content-ar {
+      display: block;
+    }
+
+    .content-en {
+      display: none;
+    }
+
+    .content-en.active {
+      display: block;
+    }
+
+    .content-ar.active {
+      display: block;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      color: var(--gold);
+      padding: 12px 24px;
+      border-radius: 30px;
+      border: 2px solid var(--gold);
+      background: transparent;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      font-family: 'Cairo', system-ui;
+      font-size: 14px;
+    }
+
+    .btn:hover {
+      background: linear-gradient(180deg, rgba(255,210,0,0.06), rgba(255,210,0,0.02));
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(198,154,47,0.2);
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: #0b0b0b;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-strong);
+      box-shadow: 0 12px 30px rgba(255,210,0,0.3);
+    }
+
+    .footer-note {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 20px;
+      opacity: 0.7;
+    }
+
+    @media (max-width: 600px) {
+      .error-content {
+        padding: 30px 20px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      .subtitle {
+        font-size: 18px;
+      }
+
+      .error-icon {
+        font-size: 60px;
+      }
+
+      .action-buttons {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container header-inner">
+      <div class="site-title">ORO Cafe</div>
+      <div class="brand-left">
+        <a href="index.html" aria-label="الرئيسية">
+          <img src="assets/oro-logo.png" alt="ORO logo" class="header-logo" onerror="this.style.display='none'">
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="error-content">
+      <div class="error-icon">
+        <i class="fas fa-times-circle"></i>
+      </div>
+
+      <div class="language-toggle">
+        <button class="lang-btn active" onclick="switchLanguage('ar')">العربية</button>
+        <button class="lang-btn" onclick="switchLanguage('en')">English</button>
+      </div>
+
+      <!-- Arabic Content -->
+      <div class="content-ar active">
+        <h1>لم يتم الدفع</h1>
+        <p class="subtitle">Payment Not Completed</p>
+        <div class="message">
+          <p>عذراً، لم تكتمل عملية الدفع بنجاح.</p>
+          <p>يرجى التحقق من بيانات بطاقتك والمحاولة مرة أخرى.</p>
+          <p>إذا استمرت المشكلة، يرجى التواصل معنا على الفور.</p>
+        </div>
+      </div>
+
+      <!-- English Content -->
+      <div class="content-en">
+        <h1>Payment Not Completed</h1>
+        <p class="subtitle">لم يتم الدفع</p>
+        <div class="message">
+          <p>Sorry, the payment process was not completed successfully.</p>
+          <p>Please verify your card details and try again.</p>
+          <p>If the problem persists, please contact us immediately.</p>
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <a href="menu.html" class="btn">
+          <i class="fas fa-arrow-right"></i>
+          <span class="btn-text-ar">العودة للقائمة</span>
+          <span class="btn-text-en" style="display:none;">Back to Menu</span>
+        </a>
+        <a href="index.html" class="btn btn-primary">
+          <i class="fas fa-home"></i>
+          <span class="btn-text-ar">الرئيسية</span>
+          <span class="btn-text-en" style="display:none;">Home</span>
+        </a>
+      </div>
+
+      <div class="footer-note">
+        <p class="ar-text">© 2026 ORO Cafe - جميع الحقوق محفوظة</p>
+        <p class="en-text" style="display:none;">© 2026 ORO Cafe - All Rights Reserved</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function switchLanguage(lang) {
+      // Update content
+      const arContent = document.querySelector('.content-ar');
+      const enContent = document.querySelector('.content-en');
+      const arText = document.querySelectorAll('.ar-text');
+      const enText = document.querySelectorAll('.en-text');
+      const btnTextAr = document.querySelectorAll('.btn-text-ar');
+      const btnTextEn = document.querySelectorAll('.btn-text-en');
+
+      // Update buttons
+      const langBtns = document.querySelectorAll('.lang-btn');
+      langBtns.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
+      if (lang === 'ar') {
+        arContent.classList.add('active');
+        enContent.classList.remove('active');
+        arText.forEach(el => el.style.display = 'block');
+        enText.forEach(el => el.style.display = 'none');
+        btnTextAr.forEach(el => el.style.display = 'inline');
+        btnTextEn.forEach(el => el.style.display = 'none');
+        document.documentElement.lang = 'ar';
+        document.body.style.direction = 'rtl';
+      } else {
+        arContent.classList.remove('active');
+        enContent.classList.add('active');
+        arText.forEach(el => el.style.display = 'none');
+        enText.forEach(el => el.style.display = 'block');
+        btnTextAr.forEach(el => el.style.display = 'none');
+        btnTextEn.forEach(el => el.style.display = 'inline');
+        document.documentElement.lang = 'en';
+        document.body.style.direction = 'ltr';
+      }
+    }
+  </script>
+</body>
+</html>
